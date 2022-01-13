@@ -4,7 +4,7 @@ import { OktaAuth } from "@okta/okta-auth-js";
 import { BehaviorSubject } from "rxjs";
 import OktaSignIn from '@okta/okta-signin-widget';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
-import { OktaConfig } from "app/shared/okta/okta-config";
+import { OktaConfigService } from "app/shared/okta/okta-config.service";
 
 
 @Injectable({
@@ -18,17 +18,17 @@ export class AuthService {
 
 
   private authClient = new OktaAuth({
-    issuer: this.OktaConfig.strIssuer,
-    clientId: this.OktaConfig.strClientID,
+    issuer: this.OktaConfigService.strIssuer,
+    clientId: this.OktaConfigService.strClientID,
   });
 
   public isAuthenticated = new BehaviorSubject<boolean>(false);
   public strstateToken;
   public oktaSignIn;
   public idToken;
-  public LogoutURI = this.OktaConfig.strPostLogoutURL;
+  public LogoutURI = this.OktaConfigService.strPostLogoutURL;
 
-  constructor(private router: Router, private OktaConfig: OktaConfig) { }
+  constructor(private router: Router, private OktaConfigService: OktaConfigService) { }
 
   async checkAuthenticated() {
     const authenticated = await this.authClient.session.exists();
@@ -46,16 +46,16 @@ export class AuthService {
     this.strstateToken = transaction.data.stateToken;
     //console.log(JSON.stringify(this.strstateToken));
     //Uses the state token to perform MFA authentication using a newly created widget
-    const OktaClientID = this.OktaConfig.strClientID;
-    const OktaBaseURI = this.OktaConfig.strBaseURI;
-    const OktaLang = this.OktaConfig.strLang;
-    const OktaRedirect = this.OktaConfig.strEnPortal;
-    const OktaBrand = this.OktaConfig.strBrand;
-    const OktaPostlogoutURI = this.OktaConfig.strPostLogoutURL;
-    const OktaIssuer = this.OktaConfig.strIssuer;
-    const OktaScope = this.OktaConfig.strScope;
-    const OktaResType = this.OktaConfig.strResponseType;
-    const OktaResMode = this.OktaConfig.strResponseMode;
+    const OktaClientID = this.OktaConfigService.strClientID;
+    const OktaBaseURI = this.OktaConfigService.strBaseURI;
+    const OktaLang = this.OktaConfigService.strLang;
+    const OktaRedirect = this.OktaConfigService.strEnPortal;
+    const OktaBrand = this.OktaConfigService.strBrand;
+    const OktaPostlogoutURI = this.OktaConfigService.strPostLogoutURL;
+    const OktaIssuer = this.OktaConfigService.strIssuer;
+    const OktaScope = this.OktaConfigService.strScope;
+    const OktaResType = this.OktaConfigService.strResponseType;
+    const OktaResMode = this.OktaConfigService.strResponseMode;
     var oktaSignIn = new OktaSignIn({
       clientId: OktaClientID,
       baseUrl: OktaBaseURI,

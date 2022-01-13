@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
-import { OktaConfig } from "app/shared/okta/okta-config";
+import { OktaConfigService } from "app/shared/okta/okta-config.service";
 import {
   OktaAuth,
   OktaAuthOptions,
@@ -33,7 +33,7 @@ export class PortalComponent implements OnInit {
   arrGroups: any;
   
 
-  constructor(private _snackBar: MatSnackBar, private oktaSDKAuth: OktaSDKAuthService,private OktaConfig: OktaConfig) { }
+  constructor(private _snackBar: MatSnackBar, private oktaSDKAuth: OktaSDKAuthService,private OktaConfigService: OktaConfigService) { }
 
   async ngOnInit() {
     console.log("Hiding restricted content until user group membership is verified.....")
@@ -60,8 +60,8 @@ export class PortalComponent implements OnInit {
       case false:
       //alert(this.oktaSDKAuth.config.redirectUri)
       // this.openSnackBar()
-      console.log("User session not found, redirecting to " + this.OktaConfig.strPostLogoutURL);
-      window.location.replace(this.OktaConfig.strPostLogoutURL);
+      console.log("User session not found, redirecting to " + this.OktaConfigService.strPostLogoutURL);
+      window.location.replace(this.OktaConfigService.strPostLogoutURL);
 
       case true:
         var strSession = this.authService.token.getWithoutPrompt({

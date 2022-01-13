@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { OktaAuth } from "@okta/okta-auth-js";
-import {OktaConfig} from 'app/shared/okta/okta-config';
+import {OktaConfigService} from 'app/shared/okta/okta-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OktaSDKAuthService {
-  constructor(private OktaConfig: OktaConfig  ){ }
+  constructor(private OktaConfigService: OktaConfigService  ){ }
 
     config = {
-        clientId: this.OktaConfig.strClientID,
-        issuer: this.OktaConfig.strIssuer,
-        redirectUri: this.OktaConfig.strRedirectURL,
-        postLogoutRedirectUri:this.OktaConfig.strPostLogoutURL,
-        responseMode: this.OktaConfig.strResponseMode,
-        responseType: this.OktaConfig.strResponseType,
-        scopes: this.OktaConfig.strScope,
-        prompt: this.OktaConfig.strPrompt,
+        clientId: this.OktaConfigService.strClientID,
+        issuer: this.OktaConfigService.strIssuer,
+        redirectUri: this.OktaConfigService.strRedirectURL,
+        postLogoutRedirectUri:this.OktaConfigService.strPostLogoutURL,
+        responseMode: this.OktaConfigService.strResponseMode,
+        responseType: this.OktaConfigService.strResponseType,
+        scopes: this.OktaConfigService.strScope,
+        prompt: this.OktaConfigService.strPrompt,
 
     };
 

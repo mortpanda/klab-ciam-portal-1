@@ -4,7 +4,7 @@ import { AuthService } from "app/shared/okta/okta-authentication";
 
 import { ViewEncapsulation } from '@angular/core';
 // import { OktaSDKAuthService } from 'app/shared/okta/okta-auth-service';
-import { OktaConfig } from "app/shared/okta/okta-config";
+import { OktaConfigService } from "app/shared/okta/okta-config.service";
 
 @Component({
   selector: 'app-sdk-login',
@@ -20,7 +20,7 @@ export class SdkLoginComponent implements OnInit {
   strLanguage: any;
 
   // constructor(private fb: FormBuilder, private authService: AuthService,private OktaConfig: OktaConfig,private oktaSDKAuth: OktaSDKAuthService) {}
-  constructor(private fb: FormBuilder, private authService: AuthService,private OktaConfig: OktaConfig) {}
+  constructor(private fb: FormBuilder, private authService: AuthService,private OktaConfigService: OktaConfigService) {}
 
   async ngOnInit() {
     this.strLanguage = '日本語';
@@ -30,8 +30,8 @@ export class SdkLoginComponent implements OnInit {
     });
     
     if (await this.authService.checkAuthenticated()) {
-      await console.log("logged in, redirecting you to the portal page : " + this.OktaConfig.strRedirectURL);
-      window.location.replace(this.OktaConfig.strRedirectURL);
+      await console.log("logged in, redirecting you to the portal page : " + this.OktaConfigService.strRedirectURL);
+      window.location.replace(this.OktaConfigService.strRedirectURL);
       
     }
   }
@@ -40,7 +40,7 @@ export class SdkLoginComponent implements OnInit {
     // console.log("event fired");
     // console.log("loginInvalid", this.loginInvalid);
     // console.log("formSubmitAttempt", this.formSubmitAttempt);
-    console.log("redirectUri = ", this.OktaConfig.strRedirectURL);
+    console.log("redirectUri = ", this.OktaConfigService.strRedirectURL);
 
     this.loginInvalid = false;
     this.formSubmitAttempt = false;

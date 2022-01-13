@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 //// This is needed to import from a path
-import { OktaConfig } from "app/shared/okta/okta-config";
+import { OktaConfigService } from "app/shared/okta/okta-config.service";
 
 import { ViewEncapsulation } from '@angular/core';
 
@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
     //   ];
     
     
-    constructor(public location: Location, private element : ElementRef,public _matdialog: MatDialog,private OktaConfig: OktaConfig, private OktaAuthClient : OktaSDKAuthService,private router: Router) {
+    constructor(public location: Location, private element : ElementRef,public _matdialog: MatDialog,private OktaConfigService: OktaConfigService, private OktaAuthClient : OktaSDKAuthService,private router: Router) {
         this.sidebarVisible = false;
     }
 
@@ -114,7 +114,7 @@ export class NavbarComponent implements OnInit {
     }
 
     OktaLogout(){
-        console.log("Initiating logout, and returning you to : " +  this.OktaConfig.strPostLogoutURL)
+        console.log("Initiating logout, and returning you to : " +  this.OktaConfigService.strPostLogoutURL)
         this.OktaAuthClient.OktaSDKAuthClient.signOut();
         // document.getElementById("welcomeText").innerHTML = " "
         }
