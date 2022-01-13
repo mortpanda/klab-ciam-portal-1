@@ -86,6 +86,9 @@ export class PortalComponent implements OnInit {
 
         for (var i = 0; i < this.strGroupMemberships.tokens.idToken.claims.okta_groups.length; i++) {
           //console.log(this.arrGroups[i]);
+          
+          //ANGULAR-CIAM-DEMO-PORTAL-NEWS
+          
           switch ((this.arrGroups[i].toUpperCase())) {
             case "ANGULAR-CIAM-DEMO-PORTAL-MOODLE":
               console.log("found group " + this.arrGroups[i].toUpperCase());
