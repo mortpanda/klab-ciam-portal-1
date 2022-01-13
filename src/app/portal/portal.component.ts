@@ -31,17 +31,17 @@ export class PortalComponent implements OnInit {
 
   strGroupMemberships: any;
   arrGroups: any;
-  
 
-  constructor(private _snackBar: MatSnackBar, private oktaSDKAuth: OktaSDKAuthService,private OktaConfigService: OktaConfigService) { }
+
+  constructor(private _snackBar: MatSnackBar, private oktaSDKAuth: OktaSDKAuthService, private OktaConfigService: OktaConfigService) { }
 
   async ngOnInit() {
     console.log("Hiding restricted content until user group membership is verified.....")
-    document.getElementById("memberSite").style.visibility = "hidden";
-    document.getElementById("memberBBS").style.visibility = "hidden";
-    document.getElementById("memberMoodle").style.visibility = "hidden";
+    document.getElementById("memberNews").style.visibility = "hidden";
+    // document.getElementById("memberBBS").style.visibility = "hidden";
+    // document.getElementById("memberMoodle").style.visibility = "hidden";
     document.getElementById("memberDentaku").style.visibility = "hidden";
-    
+
     this.strUserSession = await this.authService.session.exists()
       .then(function (exists) {
         if (exists) {
@@ -51,17 +51,17 @@ export class PortalComponent implements OnInit {
         } else {
           // not logged in
           //console.log(exists);
-          
+
           return exists
         }
       });
 
     switch (this.strUserSession == true) {
       case false:
-      //alert(this.oktaSDKAuth.config.redirectUri)
-      // this.openSnackBar()
-      console.log("User session not found, redirecting to " + this.OktaConfigService.strPostLogoutURL);
-      window.location.replace(this.OktaConfigService.strPostLogoutURL);
+        //alert(this.oktaSDKAuth.config.redirectUri)
+        // this.openSnackBar()
+        console.log("User session not found, redirecting to " + this.OktaConfigService.strPostLogoutURL);
+        window.location.replace(this.OktaConfigService.strPostLogoutURL);
 
       case true:
         var strSession = this.authService.token.getWithoutPrompt({
@@ -86,33 +86,33 @@ export class PortalComponent implements OnInit {
 
         for (var i = 0; i < this.strGroupMemberships.tokens.idToken.claims.okta_groups.length; i++) {
           //console.log(this.arrGroups[i]);
-          
+
           //ANGULAR-CIAM-DEMO-PORTAL-NEWS
-          
+
           switch ((this.arrGroups[i].toUpperCase())) {
-            case "ANGULAR-CIAM-DEMO-PORTAL-MOODLE":
+            // case "ANGULAR-CIAM-DEMO-PORTAL-MOODLE":
+            //   console.log("found group " + this.arrGroups[i].toUpperCase());
+            //   console.log("Displaying Moodle to the user....")
+            //   document.getElementById("memberMoodle").style.visibility = "visible";
+            //   break;
+
+            case "ANGULAR-CIAM-DEMO-PORTAL-NEWS":
               console.log("found group " + this.arrGroups[i].toUpperCase());
-              console.log("Displaying Moodle to the user....")
-              document.getElementById("memberMoodle").style.visibility = "visible";
+              console.log("Displaying News App to the user....")
+              document.getElementById("memberNews").style.visibility = "visible";
               break;
 
-            case "ANGULAR-CIAM-DEMO-PORTAL-WORDPRESS":
-              console.log("found group " + this.arrGroups[i].toUpperCase());
-              console.log("Displaying Wordpress to the user....")
-              document.getElementById("memberSite").style.visibility = "visible";
-              break;
+            // case "ANGULAR-CIAM-DEMO-PORTAL-WORDPRESS-BB":
+            //   console.log("found group " + this.arrGroups[i].toUpperCase());
+            //   console.log("Displaying Wordpress BBS to the user....")
+            //   document.getElementById("memberBBS").style.visibility = "visible";
+            //   break;
 
-            case "ANGULAR-CIAM-DEMO-PORTAL-WORDPRESS-BB":
+            case "ANGULAR-CIAM-DEMO-PORTAL-CALCULATOR":
               console.log("found group " + this.arrGroups[i].toUpperCase());
-              console.log("Displaying Wordpress BBS to the user....")
-              document.getElementById("memberBBS").style.visibility = "visible";
+              console.log("Displaying Dentaku to the user....")
+              document.getElementById("memberDentaku").style.visibility = "visible";
               break;
-
-              case "ANGULAR-CIAM-DEMO-PORTAL-CALCULATOR":
-                console.log("found group " + this.arrGroups[i].toUpperCase());
-                console.log("Displaying Dentaku to the user....")
-                document.getElementById("memberDentaku").style.visibility = "visible";
-                break;
           }
         }
         const strUserGet = async () => {
