@@ -12,6 +12,7 @@ import {
   UserClaims,
   TokenParams
 } from '@okta/okta-auth-js'
+import {OktaGroupInfo, PortalApps} from 'app/shared/okta/okta-group-info';
 
 @Component({
   selector: 'app-portal',
@@ -20,6 +21,10 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class PortalComponent implements OnInit {
+  
+  PortalApps = PortalApps;
+  AppsFromGroup = [];
+
   UserLoggedIn: any;
   strWelcome: any;
   authService = new OktaAuth(this.oktaSDKAuth.config);
@@ -36,11 +41,12 @@ export class PortalComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar, private oktaSDKAuth: OktaSDKAuthService, private OktaConfigService: OktaConfigService) { }
 
   async ngOnInit() {
-    console.log("Hiding restricted content until user group membership is verified.....")
-    document.getElementById("memberNews").style.visibility = "hidden";
-    // document.getElementById("memberBBS").style.visibility = "hidden";
-    // document.getElementById("memberMoodle").style.visibility = "hidden";
-    document.getElementById("memberDentaku").style.visibility = "hidden";
+    //console.log("Hiding restricted content until user group membership is verified.....")
+    
+    //////////////////////////// DO NOT DELETE ////////////////////////////
+    // document.getElementById("memberNews").style.visibility = "hidden";
+    // document.getElementById("memberDentaku").style.visibility = "hidden";
+    ///////////////////////////////////////////////////////////////////////
 
     this.strUserSession = await this.authService.session.exists()
       .then(function (exists) {
@@ -85,35 +91,20 @@ export class PortalComponent implements OnInit {
         this.arrGroups = this.strGroupMemberships.tokens.idToken.claims.okta_groups;
 
         for (var i = 0; i < this.strGroupMemberships.tokens.idToken.claims.okta_groups.length; i++) {
-          //console.log(this.arrGroups[i]);
+          //this.arrGroups[i].toUpperCase())
+          ////////////////////////////////////////////////////////////////////////////////////////////////
+          ////////////////////////////////////////////////////////////////////////////////////////////////
 
-          //ANGULAR-CIAM-DEMO-PORTAL-NEWS
-
-          switch ((this.arrGroups[i].toUpperCase())) {
-            // case "ANGULAR-CIAM-DEMO-PORTAL-MOODLE":
-            //   console.log("found group " + this.arrGroups[i].toUpperCase());
-            //   console.log("Displaying Moodle to the user....")
-            //   document.getElementById("memberMoodle").style.visibility = "visible";
-            //   break;
-
-            case "ANGULAR-CIAM-DEMO-PORTAL-NEWS":
-              console.log("found group " + this.arrGroups[i].toUpperCase());
-              console.log("Displaying News App to the user....")
-              document.getElementById("memberNews").style.visibility = "visible";
-              break;
-
-            // case "ANGULAR-CIAM-DEMO-PORTAL-WORDPRESS-BB":
-            //   console.log("found group " + this.arrGroups[i].toUpperCase());
-            //   console.log("Displaying Wordpress BBS to the user....")
-            //   document.getElementById("memberBBS").style.visibility = "visible";
-            //   break;
-
-            case "ANGULAR-CIAM-DEMO-PORTAL-CALCULATOR":
-              console.log("found group " + this.arrGroups[i].toUpperCase());
-              console.log("Displaying Dentaku to the user....")
-              document.getElementById("memberDentaku").style.visibility = "visible";
-              break;
+          
+          for (var j = 0; j < this.PortalApps.length; j++) {
+            if (this.strGroupMemberships.tokens.idToken.claims.okta_groups[i] == this.PortalApps[j].groupname){
+            console.log("Found : " + this.PortalApps[j].groupname);
+            this.AppsFromGroup.push(this.PortalApps[j]);
           }
+          }
+          ////////////////////////////////////////////////////////////////////////////////////////////////
+          ////////////////////////////////////////////////////////////////////////////////////////////////
+          
         }
         const strUserGet = async () => {
           const strUseremail = await strSession;
@@ -127,10 +118,9 @@ export class PortalComponent implements OnInit {
           strUserGet();
         }
     }
+    console.log(this.AppsFromGroup);
   }
-
-
-
 }
+
 
 

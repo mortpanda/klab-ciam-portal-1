@@ -2,115 +2,167 @@
     width: auto;
     height: auto;
     color: #fff;
-     z-index: 1; 
+    z-index: 1;
+    font-family: "ABCWhyte Book", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu",
+        "Cantarell", "Helvetica Neue", sans-serif !important;
+    margin-bottom: 20px !important;
+    margin-top: 15px !important;
 }
 
 .item {
     width: 200px;
     height: 200px;
-    color:black;
+    color: black;
     z-index: 2;
-    justify-content: center!important;
-    display: flex!important;    
+    justify-content: center !important;
+    display: flex !important;
 }
 
-.btn_wpbb{
+.btn_wpbb {
     background-image: url(assets/img/customer_support.png);
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: contain;
     background-position: top;
     background-color: #a9a9b1;
-    justify-content: center!important;
-    display: flex!important;
+    justify-content: center !important;
+    display: flex !important;
     height: 100px;
     width: 200px;
-    z-index: 10!important; 
+    z-index: 10 !important;
     text-align: center;
-    padding: 70px!important;
+    padding: 70px !important;
     color: white;
 }
 
-.btn_profile{
+.btn_profile {
     background-image: url(assets/img/user-mgt.png);
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: contain;
     background-position: top;
     background-color: #a9a9b1;
-    justify-content: center!important;
-    display: flex!important;
+    justify-content: center !important;
+    display: flex !important;
     height: 100px;
     width: 200px;
     text-align: center;
-    padding: 70px!important;
+    padding: 70px !important;
     color: white;
-    
 }
 
-.btn_dentaku{
+.btn_dentaku {
     background-image: url(assets/img/api.png);
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: contain;
     background-position: top;
     background-color: #a9a9b1;
-    justify-content: center!important;
-    display: flex!important;
+    justify-content: center !important;
+    display: flex !important;
     height: 100px;
     width: 200px;
     text-align: center;
-    padding: 70px!important;
+    padding: 70px !important;
     color: white;
-    
 }
 
-
-.btn_member{
+.btn_member {
     background-image: url(assets/img/member.png);
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: contain;
     background-position: top;
     background-color: #a9a9b1;
-    justify-content: center!important;
-    display: flex!important;
+    justify-content: center !important;
+    display: flex !important;
     height: 100px;
     width: 200px;
     text-align: center;
-    padding: 70px!important;
+    padding: 70px !important;
     color: white;
 }
 
-.btn_moodle{
+.btn_moodle {
     background-image: url(assets/img/edu.png);
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: contain;
-    background-position: top!important;
+    background-position: top !important;
     background-color: #a9a9b1;
-    justify-content: center!important;
-    display: flex!important;
+    justify-content: center !important;
+    display: flex !important;
     height: 100px;
     width: 200px;
     text-align: center;
-    padding: 70px!important;
+    padding: 70px !important;
     color: white;
 }
 
-.loggedinUser{
-    text-align: center!important;
-    color: white!important;
-    font-family: "ABCWhyte Book","-apple-system","BlinkMacSystemFont","Segoe UI","Roboto","Oxygen-Sans","Ubuntu","Cantarell","Helvetica Neue",sans-serif!important;
+.loggedinUser {
+    text-align: center !important;
+    color: white !important;
+    font-family: "ABCWhyte Book", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu",
+        "Cantarell", "Helvetica Neue", sans-serif !important;
     display: block;
-    position: relative!important;
+    position: relative !important;
     z-index: 99;
 }
 
-.okta-white-logo{
+.okta-white-logo {
     /* width: 500px!important; */
     position: relative;
-    z-index: 1!important;
-    
+    z-index: 1 !important;
+
     /* justify-content: center!important; */
     /* align-items: center!important; */
-    text-align: center!important;
+    text-align: center !important;
     /* display: block;
     width: 60%!important;
     height: auto!important; */
+}
+
+.imgSize {
+    width: 100px !important;
+    height: auto !important;
+}
+
+.AppContainer {
+    font-family: "ABCWhyte Book", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu",
+        "Cantarell", "Helvetica Neue", sans-serif !important;
+    width: 300px !important;
+    height: 150px !important;
+    /* background-color: #aaaab4 !important ; */
+    background-color: #FFFFFF !important ;
+    padding: 20px !important;
+    border-radius: 5px !important;
+    box-shadow: 0 5px 0 #41414B!important;
+    cursor: pointer;
+    /* opacity: .7!important; */
+}
+
+/* .AppContainer:active {
+    box-shadow: none!important;
+    transform: translateY(5px)!important;
+    font-family: "ABCWhyte Book", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu",
+        "Cantarell", "Helvetica Neue", sans-serif !important;
+  } */
+
+.AppName {
+    font-family: "ABCWhyte Book", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu",
+        "Cantarell", "Helvetica Neue", sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 800!important;
+    color: #00297a !important;
+    margin-left: 20px !important;
+    text-align: center!important;
+
+}
+
+.AppInfoContainer{
+    color: #00297A!important;
+}
+
+.nc-book-bookmark{
+    margin-right: 10px!important;
+}
+
+.GoButton{
+    margin-top: 10px!important;
+    margin-left: 10px!important;
 }

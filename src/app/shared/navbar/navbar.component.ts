@@ -33,12 +33,6 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     public Userfullname: any;
 
-    // foods: Food[] = [
-    //     {value: 'steak-0', viewValue: 'Steak'},
-    //     {value: 'pizza-1', viewValue: 'Pizza'},
-    //     {value: 'tacos-2', viewValue: 'Tacos'}
-    //   ];
-    
     
     constructor(public location: Location, private element : ElementRef,public _matdialog: MatDialog,private OktaConfigService: OktaConfigService, private OktaAuthClient : OktaSDKAuthService,private router: Router) {
         this.sidebarVisible = false;
@@ -96,8 +90,6 @@ export class NavbarComponent implements OnInit {
     ProfilePage(){
         // this.router.navigate(['https://kent-nagao-test.oktapreview.com/home/kent-nagao-test_angulartest_3/0oa1bn5842y4SaRrA1d7/aln1bn8srsqNf0zLq1d7']);
         OktaMFA();
-
-
     }
 
     isDocumentation() {
