@@ -4,7 +4,7 @@
 
 <div class="fxcontainer" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
  
-    <div class="AppContainer" fxLayout="row" fxLayoutGap="10px" *ngFor="let itemPortalApp of AppsFromGroup">
+    <div class="AppContainer" fxLayout="row wrap" fxLayoutAlign="center center" *ngFor="let itemPortalApp of AppsFromGroup">
       <div class="imgContainer">
         <img src="{{ itemPortalApp.img }}" class="imgSize">
       </div>
